@@ -5,17 +5,26 @@
  */
 package pFormularios;
 
+import javax.swing.table.TableColumn;
+import pClases.ArregloFacturas;
+
 /**
  *
  * @author ASUS
  */
 public class frmVenta extends javax.swing.JFrame {
-
+    ArregloFacturas f = new ArregloFacturas();
+    int num = 0;
     /**
      * Creates new form frmVenta
      */
     public frmVenta() {
         initComponents();
+        DefinirAnchos();
+        asignaFechas();
+        habilitaCajas(false);
+        btnRegistrar.setVisible(false);
+        btnModificar.setVisible(false);
     }
 
     /**
@@ -39,7 +48,7 @@ public class frmVenta extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnListado = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tFacturas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +66,11 @@ public class frmVenta extends javax.swing.JFrame {
         jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Mantenimiento"));
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setText("Consultar");
 
@@ -66,7 +80,7 @@ public class frmVenta extends javax.swing.JFrame {
 
         btnListado.setText("Listado");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,7 +91,7 @@ public class frmVenta extends javax.swing.JFrame {
                 "N° Factura", "Fecha de venta", "Vendedor", "Monto"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tFacturas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,6 +163,69 @@ public class frmVenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        txtNF.setText(""+generaNumero());
+        asignaFecha();
+        txtNV.requestFocus();
+	
+       habilitaCajas(true);
+       txtNV.setEditable(true);
+       txtMR.setEditable(true);
+       
+        txtNV.setText("");
+        txtMR.setText("");
+
+        btnRegistrar.setVisible(false);
+        btnGrabarIngreso.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    void DefinirAnchos(){
+        TableColumn columna;
+        columna = tFacturas.getColumnModel().getColumn(0);
+        columna.setPreferredWidth(30);
+        columna = tFacturas.getColumnModel().getColumn(1);
+        columna.setPreferredWidth(50);
+        columna = tFacturas.getColumnModel().getColumn(2);
+        columna.setPreferredWidth(150);
+        columna = tFacturas.getColumnModel().getColumn(3);
+        columna.setPreferredWidth(70);
+        tFacturas.getTableHeader().setReorderingAllowed(false);
+        tFacturas.getTableHeader().setResizingAllowed(false);
+    }
+    
+    void habilitaCajas(boolean opcion){
+        txtNF.setEditable(opcion);
+        txtNV.setEditable(opcion);
+        txtMR.setEditable(opcion);
+        txtFe.setEditable(opcion);
+   }
+    
+    void limpiarCajas(){
+        txtNF.setText("");
+        txtNV.setText("");
+        txtMR.setText("");
+        txtFe.setText("");
+    }
+    
+    void limpiaMatriz(){
+        for(int i=0; i<10; i++){
+            tFacturas.setValueAt("", i, 0);
+            tFacturas.setValueAt("", i, 1);
+            tFacturas.setValueAt("", i, 2);
+            tFacturas.setValueAt("", i, 3);
+        }
+    }
+    
+    public int generaNumero()
+    {
+        num++;
+        return num;
+    }
+    public int getNumFact(){
+        return Integer.parseInt(txtNF.getText());
+    }
+    public 
     /**
      * @param args the command line arguments
      */
@@ -193,7 +270,7 @@ public class frmVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tFacturas;
     private javax.swing.JTextField txtFe;
     private javax.swing.JTextField txtMR;
     private javax.swing.JTextField txtNF;

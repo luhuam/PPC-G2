@@ -283,15 +283,16 @@ public class frmVenta extends javax.swing.JFrame {
         btnRegistrar.setVisible(true);
         btnGrabarIngreso.setVisible(false);
         
-        Factura fact=new Factura(getNumFact(),getFecha(),getVendedor(),getMonto());
+        Factura fact =new Factura(getNumFact(),getFecha(),getVendedor(),getMonto());
         
         f.agregar(fact);
         listar();
         JOptionPane.showMessageDialog(null,"Factura ingresada correctamente","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
-    }catch(Exception ex){
+        limpiarCajas();
+        }catch(Exception ex){
         JOptionPane.showMessageDialog(null,"Error de Ingreso de Datos","Error",JOptionPane.ERROR_MESSAGE);
         num--;
-    }
+        }
     }//GEN-LAST:event_btnGrabarIngresoActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -315,9 +316,13 @@ public class frmVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             limpiarCajas();
+            System.out.println("Aqui llega");
             limpiaMatriz();
+            System.out.println("Aqui llega");
             int buscoFactura=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese un numero de Facturas: "));
+            System.out.println("Aqui llega");
             Factura fact=f.buscar(buscoFactura);
+            System.out.println("Aqui llega");
             if(fact!=null){
                 tFacturas.setValueAt(fact.getnFactura(),0,0);
                 tFacturas.setValueAt(fact.getFecha(),0,1);
@@ -358,6 +363,7 @@ public class frmVenta extends javax.swing.JFrame {
             txtFe.setEditable(false);
         }else
            JOptionPane.showMessageDialog(null,"Factura NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
+        
     }catch(Exception ex){
         JOptionPane.showMessageDialog(null,"Factura NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
         btnModificar.setVisible(true);
@@ -374,6 +380,8 @@ public class frmVenta extends javax.swing.JFrame {
         if(fact!=null){
             f.eliminar(fact);
             JOptionPane.showMessageDialog(null,"Factura Eliminada Correctamente","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+            limpiaMatriz();
+            limpiarCajas();
             listar();
         }else
         JOptionPane.showMessageDialog(null,"NO existe el numero de factura ingresada","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
@@ -395,6 +403,7 @@ public class frmVenta extends javax.swing.JFrame {
             fact.setMonto(getMonto());
             JOptionPane.showMessageDialog(null,"Factura Modificada Correctamente","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
             listar();
+            limpiarCajas();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"Ocurrio un error al intengtrar grabar","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
         }
@@ -431,12 +440,14 @@ public class frmVenta extends javax.swing.JFrame {
     }
     
     void limpiaMatriz(){
-        for(int i=0; i<10; i++){
+        System.out.println("Aqui llega 2");
+        for(int i=0; i<4; i++){
             tFacturas.setValueAt("", i, 0);
             tFacturas.setValueAt("", i, 1);
             tFacturas.setValueAt("", i, 2);
             tFacturas.setValueAt("", i, 3);
         }
+        System.out.println("Aqui llega 2");
     }
     
     public int generaNumero()

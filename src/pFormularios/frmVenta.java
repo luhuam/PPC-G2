@@ -5,8 +5,11 @@
  */
 package pFormularios;
 
+import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
 import pClases.ArregloFacturas;
+import pClases.Factura;
 
 /**
  *
@@ -21,7 +24,7 @@ public class frmVenta extends javax.swing.JFrame {
     public frmVenta() {
         initComponents();
         DefinirAnchos();
-        //asignaFechas();
+        asignaFecha();
         habilitaCajas(false);
         btnRegistrar.setVisible(false);
         btnModificar.setVisible(false);
@@ -41,14 +44,20 @@ public class frmVenta extends javax.swing.JFrame {
         txtFe = new javax.swing.JTextField();
         txtNV = new javax.swing.JTextField();
         txtMR = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnListado = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tFacturas = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        btnRegistrar1 = new javax.swing.JButton();
+        btnConsultar1 = new javax.swing.JButton();
+        btnModificar1 = new javax.swing.JButton();
+        btnEliminar1 = new javax.swing.JButton();
+        btnListado1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,45 +104,40 @@ public class frmVenta extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Mantenimiento"));
 
-        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/add.png"))); // NOI18N
+        btnRegistrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/add.png"))); // NOI18N
+        jPanel1.add(btnRegistrar1);
 
-        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/search.png"))); // NOI18N
+        btnConsultar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/search.png"))); // NOI18N
+        btnConsultar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnConsultar1);
 
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/edit.png"))); // NOI18N
+        btnModificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/edit.png"))); // NOI18N
+        btnModificar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnModificar1);
 
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/delete.png"))); // NOI18N
+        btnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/delete.png"))); // NOI18N
+        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar1);
 
-        btnListado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/list.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(btnModificar)
-                .addGap(46, 46, 46)
-                .addComponent(btnEliminar)
-                .addGap(31, 31, 31)
-                .addComponent(btnListado, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
-        );
+        btnListado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/list.png"))); // NOI18N
+        btnListado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListado1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnListado1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,6 +209,82 @@ public class frmVenta extends javax.swing.JFrame {
         btnGrabarIngreso.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    private void btnConsultar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultar1ActionPerformed
+        // TODO add your handling code here:
+         try{
+            limpiarCajas();
+            limpiaMatriz();
+            int buscoFactura=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese un numero de Facturas: "));
+            Factura fact=f.buscar(buscoFactura);
+            if(fact!=null){
+                tFacturas.setValueAt(fact.getnFactura(),0,0);
+                tFacturas.setValueAt(fact.getFecha(),0,1);
+                tFacturas.setValueAt(fact.getVendedor(),0,2);
+                tFacturas.setValueAt(fact.getMonto(),0,3);
+            }else
+                JOptionPane.showMessageDialog(null,"Factura NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Error de Entrada de Datos","Confirmacion",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnConsultar1ActionPerformed
+
+    private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
+        // TODO add your handling code here:
+         try {
+        limpiarCajas();
+        limpiaMatriz();
+        
+        btnModificar.setVisible(false);
+        btnGrabarModificado.setVisible(true);
+        
+        int buscoFactura=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese un numero de Factura:"));
+        
+        Factura fact=f.buscar(buscoFactura);
+        if(fact!=null){
+            tFacturas.setValueAt(fact.getnFactura(), 0, 0);
+            tFacturas.setValueAt(fact.getFecha(), 0, 1);
+            tFacturas.setValueAt(fact.getVendedor(), 0, 2);
+            tFacturas.setValueAt(fact.getMonto(), 0, 3);
+        
+            txtNF.setText(""+fact.getnFactura());
+            txtFe.setText(fact.getFecha());
+            txtNV.setText(fact.getVendedor());
+            txtMR.setText(""+fact.getMonto());
+        
+            habilitaCajas(true);
+            txtNF.setEditable(false);
+            txtFe.setEditable(false);
+        }else
+           JOptionPane.showMessageDialog(null,"Factura NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Factura NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
+        btnModificar.setVisible(true);
+        btnGrabarModificado.setVisible(false);
+    }
+    }//GEN-LAST:event_btnModificar1ActionPerformed
+
+    private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
+        // TODO add your handling code here:
+        try{
+        int buscoFactura=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese un numero de Factura a Eliminar:"));
+        
+        Factura fact=f.buscar(buscoFactura);
+        if(fact!=null){
+            f.eliminar(fact);
+            JOptionPane.showMessageDialog(null,"Factura Eliminada Correctamente","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+            listar();
+        }else
+        JOptionPane.showMessageDialog(null,"NO existe el numero de factura ingresada","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"NO existe el numeor de factura ingresada","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+    }
+    }//GEN-LAST:event_btnEliminar1ActionPerformed
+
+    private void btnListado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListado1ActionPerformed
+        // TODO add your handling code here:
+         listar();
+    }//GEN-LAST:event_btnListado1ActionPerformed
+
     void DefinirAnchos(){
         TableColumn columna;
         columna = tFacturas.getColumnModel().getColumn(0);
@@ -250,7 +330,38 @@ public class frmVenta extends javax.swing.JFrame {
     public int getNumFact(){
         return Integer.parseInt(txtNF.getText());
     }
-    public 
+    public String getFecha(){
+        return txtFe.getText();
+    }
+    
+    public String getVendedor(){
+        return txtNV.getText();
+    }
+    
+    public double getMonto(){
+        return Double.parseDouble(txtMR.getText());
+    }
+    
+    void listar(){
+        if(f.getTamaño()>0){
+            for(int i=0; i<f.getTamaño(); i++){
+                Factura fact = f.obtener(i);
+                tFacturas.setValueAt(fact.getnFactura(), i, 0);
+                tFacturas.setValueAt(fact.getFecha(), i, 1);
+                tFacturas.setValueAt(fact.getVendedor(), i, 2);
+                tFacturas.setValueAt(fact.getMonto(), i, 3);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay facturas registradas", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+            limpiaMatriz();
+        }
+    }
+    
+    void asignaFecha(){
+        GregorianCalendar cal = new GregorianCalendar();
+        txtFe.setText(cal.get(cal.DAY_OF_MONTH)+"/"
+        +cal.MONTH+"/"+cal.get(cal.YEAR));
+    }
     /**
      * @param args the command line arguments
      */
@@ -288,11 +399,17 @@ public class frmVenta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnConsultar1;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnListado;
+    private javax.swing.JButton btnListado1;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnModificar1;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnRegistrar1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tFacturas;

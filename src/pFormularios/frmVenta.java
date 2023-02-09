@@ -26,8 +26,8 @@ public class frmVenta extends javax.swing.JFrame {
         DefinirAnchos();
         asignaFecha();
         habilitaCajas(false);
-        btnRegistrar.setVisible(false);
-        btnModificar.setVisible(false);
+        btnGrabarIngreso.setVisible(false);
+        btnGrabarModificado.setVisible(false);
     }
 
     /**
@@ -45,19 +45,16 @@ public class frmVenta extends javax.swing.JFrame {
         txtNV = new javax.swing.JTextField();
         txtMR = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tFacturas = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         btnRegistrar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnListado = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tFacturas = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        btnRegistrar1 = new javax.swing.JButton();
-        btnConsultar1 = new javax.swing.JButton();
-        btnModificar1 = new javax.swing.JButton();
-        btnEliminar1 = new javax.swing.JButton();
-        btnListado1 = new javax.swing.JButton();
+        btnGrabarIngreso = new javax.swing.JButton();
+        btnGrabarModificado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,21 +71,6 @@ public class frmVenta extends javax.swing.JFrame {
 
         jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Mantenimiento"));
 
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
-            }
-        });
-
-        btnConsultar.setText("Consultar");
-
-        btnModificar.setText("Modificar");
-
-        btnEliminar.setText("Eliminar");
-
-        btnListado.setText("Listado");
-
         tFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -104,69 +86,89 @@ public class frmVenta extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Mantenimiento"));
 
-        btnRegistrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/add.png"))); // NOI18N
-        jPanel1.add(btnRegistrar1);
-
-        btnConsultar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/search.png"))); // NOI18N
-        btnConsultar1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/add.png"))); // NOI18N
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultar1ActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConsultar1);
+        jPanel1.add(btnRegistrar);
 
-        btnModificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/edit.png"))); // NOI18N
-        btnModificar1.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/search.png"))); // NOI18N
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificar1ActionPerformed(evt);
+                btnConsultarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar1);
+        jPanel1.add(btnConsultar);
 
-        btnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/delete.png"))); // NOI18N
-        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/edit.png"))); // NOI18N
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar1ActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar1);
+        jPanel1.add(btnModificar);
 
-        btnListado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/list.png"))); // NOI18N
-        btnListado1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/delete.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListado1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnListado1);
+        jPanel1.add(btnEliminar);
+
+        btnListado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pImagenes/list.png"))); // NOI18N
+        btnListado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListadoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnListado);
+
+        btnGrabarIngreso.setText("Guardar Ingreso");
+        btnGrabarIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrabarIngresoActionPerformed(evt);
+            }
+        });
+
+        btnGrabarModificado.setText("Guardar Modificado");
+        btnGrabarModificado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrabarModificadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGrabarIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnGrabarModificado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtNF, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtFe, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtFe, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtNV, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMR)))
                 .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -175,9 +177,15 @@ public class frmVenta extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFe))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFe))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGrabarIngreso)
+                            .addComponent(btnGrabarModificado))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNV)
@@ -191,23 +199,6 @@ public class frmVenta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
-        txtNF.setText(""+generaNumero());
-        asignaFecha();
-        txtNV.requestFocus();
-	
-       habilitaCajas(true);
-       txtNV.setEditable(true);
-       txtMR.setEditable(true);
-       
-        txtNV.setText("");
-        txtMR.setText("");
-
-        btnRegistrar.setVisible(false);
-        btnGrabarIngreso.setVisible(true);
-    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnConsultar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultar1ActionPerformed
         // TODO add your handling code here:
@@ -284,6 +275,132 @@ public class frmVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
          listar();
     }//GEN-LAST:event_btnListado1ActionPerformed
+
+    private void btnGrabarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarIngresoActionPerformed
+        // TODO add your handling code here:
+        try{
+        habilitaCajas(false);
+        btnRegistrar.setVisible(true);
+        btnGrabarIngreso.setVisible(false);
+        
+        Factura fact=new Factura(getNumFact(),getFecha(),getVendedor(),getMonto());
+        
+        f.agregar(fact);
+        listar();
+        JOptionPane.showMessageDialog(null,"Factura ingresada correctamente","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Error de Ingreso de Datos","Error",JOptionPane.ERROR_MESSAGE);
+        num--;
+    }
+    }//GEN-LAST:event_btnGrabarIngresoActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        txtNF.setText(""+generaNumero());
+        asignaFecha();
+        txtNV.requestFocus();
+	
+       habilitaCajas(true);
+       txtNV.setEditable(true);
+       txtMR.setEditable(true);
+       
+        txtNV.setText("");
+        txtMR.setText("");
+
+        btnRegistrar.setVisible(false);
+        btnGrabarIngreso.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+        try{
+            limpiarCajas();
+            limpiaMatriz();
+            int buscoFactura=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese un numero de Facturas: "));
+            Factura fact=f.buscar(buscoFactura);
+            if(fact!=null){
+                tFacturas.setValueAt(fact.getnFactura(),0,0);
+                tFacturas.setValueAt(fact.getFecha(),0,1);
+                tFacturas.setValueAt(fact.getVendedor(),0,2);
+                tFacturas.setValueAt(fact.getMonto(),0,3);
+            }else
+                JOptionPane.showMessageDialog(null,"Factura NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Error de Entrada de Datos","Confirmacion",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+         try {
+        limpiarCajas();
+        limpiaMatriz();
+        
+        btnModificar.setVisible(false);
+        btnGrabarModificado.setVisible(true);
+        
+        int buscoFactura=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese un numero de Factura:"));
+        
+        Factura fact=f.buscar(buscoFactura);
+        if(fact!=null){
+            tFacturas.setValueAt(fact.getnFactura(), 0, 0);
+            tFacturas.setValueAt(fact.getFecha(), 0, 1);
+            tFacturas.setValueAt(fact.getVendedor(), 0, 2);
+            tFacturas.setValueAt(fact.getMonto(), 0, 3);
+        
+            txtNF.setText(""+fact.getnFactura());
+            txtFe.setText(fact.getFecha());
+            txtNV.setText(fact.getVendedor());
+            txtMR.setText(""+fact.getMonto());
+        
+            habilitaCajas(true);
+            txtNF.setEditable(false);
+            txtFe.setEditable(false);
+        }else
+           JOptionPane.showMessageDialog(null,"Factura NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"Factura NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
+        btnModificar.setVisible(true);
+        btnGrabarModificado.setVisible(false);
+    }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+         try{
+        int buscoFactura=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese un numero de Factura a Eliminar:"));
+        
+        Factura fact=f.buscar(buscoFactura);
+        if(fact!=null){
+            f.eliminar(fact);
+            JOptionPane.showMessageDialog(null,"Factura Eliminada Correctamente","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+            listar();
+        }else
+        JOptionPane.showMessageDialog(null,"NO existe el numero de factura ingresada","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,"NO existe el numeor de factura ingresada","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+    }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListadoActionPerformed
+        // TODO add your handling code here:
+         listar();
+    }//GEN-LAST:event_btnListadoActionPerformed
+
+    private void btnGrabarModificadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarModificadoActionPerformed
+        // TODO add your handling code here:
+        try{
+            Factura fact=f.buscar(getNumFact());
+            fact.setVendedor(getVendedor());
+            fact.setMonto(getMonto());
+            JOptionPane.showMessageDialog(null,"Factura Modificada Correctamente","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+            listar();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Ocurrio un error al intengtrar grabar","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+        }
+        btnGrabarModificado.setVisible(false);
+        btnModificar.setVisible(true);
+    }//GEN-LAST:event_btnGrabarModificadoActionPerformed
 
     void DefinirAnchos(){
         TableColumn columna;
@@ -399,15 +516,12 @@ public class frmVenta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
-    private javax.swing.JButton btnConsultar1;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnEliminar1;
+    private javax.swing.JButton btnGrabarIngreso;
+    private javax.swing.JButton btnGrabarModificado;
     private javax.swing.JButton btnListado;
-    private javax.swing.JButton btnListado1;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnModificar1;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnRegistrar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
